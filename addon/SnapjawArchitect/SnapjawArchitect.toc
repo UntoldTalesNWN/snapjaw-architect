@@ -1,0 +1,12 @@
+## Interface: 11200
+## Title: Snapjaw Architect
+## Notes: Search and place NPCs and GameObjects using Snapjaw GM commands.
+## Author: Stephan Allhoff
+## Version: 1.0.0
+## SavedVariables: SnapjawArchitectDB
+
+Data\BuildInfo.lua
+Data\NPCs.lua
+Data\GameObjects.lua
+Core.lua
+UI.lua

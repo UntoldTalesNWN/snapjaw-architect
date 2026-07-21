@@ -1,0 +1,10 @@
+# Packaged releases
+dist/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Operating systems
+.DS_Store
+Thumbs.db
