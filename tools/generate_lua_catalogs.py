@@ -197,7 +197,7 @@ def write_build_info(
         handle.write(f"    database = {lua_string(database)},\n")
         handle.write(f"    npcCount = {npc_count},\n")
         handle.write(f"    gameObjectCount = {gameobject_count},\n")
-        handle.write('    version = "1.0.0",\n')
+        handle.write('    version = "1.0.1",\n')
         handle.write("}\n")
 
 

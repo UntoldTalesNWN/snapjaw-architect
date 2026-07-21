@@ -1,5 +1,5 @@
 SnapjawArchitect = {}
-SnapjawArchitect.version = "1.0.0"
+SnapjawArchitect.version = "1.0.1"
 SnapjawArchitect.activeTab = "NPC"
 SnapjawArchitect.searchText = ""
 SnapjawArchitect.page = 1
@@ -315,6 +315,11 @@ eventFrame:SetScript("OnEvent", function()
         end
 
         SnapjawArchitect.FilterCatalogue()
+
+        if SnapjawArchitect.RestoreLauncherPosition then
+            SnapjawArchitect.RestoreLauncherPosition()
+        end
+
         SJA_Print(
             "v" .. SnapjawArchitect.version ..
             " loaded. Type /sja to open."

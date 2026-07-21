@@ -5,7 +5,7 @@ GameObjects on the Snapjaw server using existing VMaNGOS GM commands.
 
 No C++ core changes or server module are required.
 
-## Version 1.0.0
+## Version 1.0.1
 
 The first version provides:
 

@@ -2,7 +2,7 @@
 ## Title: Snapjaw Architect
 ## Notes: Search and place NPCs and GameObjects using Snapjaw GM commands.
 ## Author: Stephan Allhoff
-## Version: 1.0.0
+## Version: 1.0.1
 ## SavedVariables: SnapjawArchitectDB
 
 Data\BuildInfo.lua

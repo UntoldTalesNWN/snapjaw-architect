@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.0.1 — 2026-07-21
+
+### Added
+
+- Draggable on-screen `SA` button for opening and closing Snapjaw Architect
+- Persistent launcher position saved between sessions
+
+
 ## v1.0.0 — 2026-07-21
 
 Initial stable release.

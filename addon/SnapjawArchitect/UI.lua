@@ -429,3 +429,114 @@ end
 frame:SetScript("OnShow", function()
     SnapjawArchitect.RefreshUI()
 end)
+
+-- Snapjaw Architect launcher button
+-- Left-click opens or closes the Architect window.
+-- Right-drag moves the button and saves its position.
+
+local launcher = CreateFrame(
+    "Button",
+    "SnapjawArchitectLauncher",
+    UIParent,
+    "UIPanelButtonTemplate"
+)
+
+SnapjawArchitect.launcher = launcher
+
+launcher:SetWidth(38)
+launcher:SetHeight(38)
+launcher:SetPoint("TOPRIGHT", UIParent, "TOPRIGHT", -18, -180)
+launcher:SetText("SA")
+launcher:SetFrameStrata("HIGH")
+launcher:SetMovable(true)
+launcher:EnableMouse(true)
+launcher:SetClampedToScreen(true)
+
+launcher:RegisterForClicks("LeftButtonUp")
+launcher:RegisterForDrag("RightButton")
+
+function SnapjawArchitect.ToggleWindow()
+    if not SnapjawArchitect.frame then
+        return
+    end
+
+    if SnapjawArchitect.frame:IsVisible() then
+        SnapjawArchitect.frame:Hide()
+    else
+        SnapjawArchitect.frame:Show()
+
+        if SnapjawArchitect.RefreshUI then
+            SnapjawArchitect.RefreshUI()
+        end
+    end
+end
+
+function SnapjawArchitect.RestoreLauncherPosition()
+    local position
+
+    launcher:ClearAllPoints()
+
+    if SnapjawArchitectDB
+        and SnapjawArchitectDB.launcherPosition
+    then
+        position = SnapjawArchitectDB.launcherPosition
+
+        launcher:SetPoint(
+            position.point or "TOPRIGHT",
+            UIParent,
+            position.relativePoint or "TOPRIGHT",
+            position.x or -18,
+            position.y or -180
+        )
+    else
+        launcher:SetPoint(
+            "TOPRIGHT",
+            UIParent,
+            "TOPRIGHT",
+            -18,
+            -180
+        )
+    end
+end
+
+launcher:SetScript("OnClick", function()
+    SnapjawArchitect.ToggleWindow()
+end)
+
+launcher:SetScript("OnDragStart", function()
+    this:StartMoving()
+end)
+
+launcher:SetScript("OnDragStop", function()
+    local point
+    local relativePoint
+    local x
+    local y
+
+    this:StopMovingOrSizing()
+
+    point, _, relativePoint, x, y = this:GetPoint(1)
+
+    if not SnapjawArchitectDB then
+        SnapjawArchitectDB = {}
+    end
+
+    SnapjawArchitectDB.launcherPosition = {
+        point = point,
+        relativePoint = relativePoint,
+        x = x,
+        y = y,
+    }
+end)
+
+launcher:SetScript("OnEnter", function()
+    GameTooltip:SetOwner(this, "ANCHOR_LEFT")
+    GameTooltip:SetText("Snapjaw Architect")
+    GameTooltip:AddLine("Left-click: open or close", 1, 1, 1)
+    GameTooltip:AddLine("Right-drag: move button", 1, 1, 1)
+    GameTooltip:Show()
+end)
+
+launcher:SetScript("OnLeave", function()
+    GameTooltip:Hide()
+end)
